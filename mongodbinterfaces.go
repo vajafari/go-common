@@ -23,7 +23,8 @@ type ICollection interface {
 	Remove(selector interface{}) error
 	Update(selector interface{}, update interface{}) error
 	GetMyDocuments() ([]interface{}, error)
-	UpsertID(id interface{}, update interface{}) (*mgo.ChangeInfo, error)
+	FindID(id interface{}) IQuery
+	UpsertID(interface{}, interface{}) (*mgo.ChangeInfo, error)
 }
 
 // IQuery is an interface to access to the database struct

@@ -57,9 +57,19 @@ func (c *MongoCollection) GetMyDocuments() ([]interface{}, error) {
 	return documents, nil
 }
 
+// UpsertID is a convenience helper equivalent to:
+func (c *MongoCollection) UpsertID(id interface{}, update interface{}) (info *mgo.ChangeInfo, err error) {
+	return c.Collection.UpsertId(id, update)
+}
+
 // Find shadows *mgo.Collection to returns a Query interface instead of *mgo.Query.
 func (c *MongoCollection) Find(query interface{}) IQuery {
 	return &MongoQuery{Query: c.Collection.Find(query)}
+}
+
+// FindID shadows *mgo.Collection to returns a Query interface instead of *mgo.Query.
+func (c *MongoCollection) FindID(id interface{}) IQuery {
+	return &MongoQuery{Query: c.Collection.FindId(id)}
 }
 
 // Count Find shadows *mgo.Collection to returns a Query interface instead of *mgo.Query.
@@ -82,11 +92,6 @@ func (c *MongoCollection) Update(selector interface{}, update interface{}) error
 	return c.Collection.Update(selector, update)
 }
 
-// UpsertID Find shadows *mgo.Collection to returns a Query interface instead of *mgo.Query.
-func (c *MongoCollection) UpsertID(id interface{}, update interface{}) (*mgo.ChangeInfo, error) {
-	return c.Collection.UpsertId(id, update)
-}
-
 // MongoQuery Find shadows *mgo.Collection to returns a Query interface instead of *mgo.Query.
 type MongoQuery struct {
 	*mgo.Query
@@ -94,15 +99,15 @@ type MongoQuery struct {
 
 // All Find shadows *mgo.Collection to returns a Query interface instead of *mgo.Query.
 func (c *MongoQuery) All(result interface{}) error {
-	return c.All(result)
+	return c.Query.All(result)
 }
 
 // One Find shadows *mgo.Collection to returns a Query interface instead of *mgo.Query.
 func (c *MongoQuery) One(result interface{}) error {
-	return c.One(result)
+	return c.Query.One(result)
 }
 
 // Distinct Find shadows *mgo.Collection to returns a Query interface instead of *mgo.Query.
 func (c *MongoQuery) Distinct(key string, result interface{}) error {
-	return c.Distinct(key, result)
+	return c.Query.Distinct(key, result)
 }

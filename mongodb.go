@@ -17,7 +17,7 @@ func (s *MongoSession) DB(name string) IDatabase {
 
 // Close shadows closeing mongo db session
 func (s *MongoSession) Close() {
-	s.Close()
+	s.Session.Close()
 }
 
 // Clone clone session

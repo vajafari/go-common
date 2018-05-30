@@ -5,6 +5,19 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
+// PagingData this struct hold information abount sorting
+type PagingData struct {
+	SortInfo   SortingData
+	PageNumber int
+	PageCount  int
+}
+
+// SortingData this struct hold information abount sorting data
+type SortingData struct {
+	FieldName string
+	sortOrder bool
+}
+
 // MongoSession is currently a Mongo session.
 type MongoSession struct {
 	*mgo.Session

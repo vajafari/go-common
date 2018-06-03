@@ -32,4 +32,5 @@ type IQuery interface {
 	All(result interface{}) error
 	One(result interface{}) (err error)
 	Distinct(key string, result interface{}) error
+	Sort(fields ...string) IQuery
 }

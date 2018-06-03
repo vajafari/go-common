@@ -110,6 +110,11 @@ type MongoQuery struct {
 	*mgo.Query
 }
 
+// Sort shadows *mgo.Collection to returns a Query interface instead of *mgo.Query.
+func (c *MongoQuery) Sort(fields ...string) IQuery {
+	return &MongoQuery{Query: c.Sort(fields)}
+}
+
 // All Find shadows *mgo.Collection to returns a Query interface instead of *mgo.Query.
 func (c *MongoQuery) All(result interface{}) error {
 	return c.Query.All(result)

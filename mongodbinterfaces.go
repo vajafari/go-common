@@ -17,6 +17,7 @@ type IDatabase interface {
 
 // ICollection is an interface to access to the collection struct.
 type ICollection interface {
+	SelectPage(pagingData PagingData) IQuery
 	Find(query interface{}) IQuery
 	Count() (n int, err error)
 	Insert(docs ...interface{}) error
@@ -29,8 +30,11 @@ type ICollection interface {
 
 // IQuery is an interface to access to the database struct
 type IQuery interface {
+	Select(selector interface{}) IQuery
 	All(result interface{}) error
 	One(result interface{}) (err error)
 	Distinct(key string, result interface{}) error
 	Sort(fields ...string) IQuery
+	Skip(n int) IQuery
+	Limit(n int) IQuery
 }

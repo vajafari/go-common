@@ -1,0 +1,8 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: golang:latest
+    steps:
+      - checkout
+      - run: echo "My Test"

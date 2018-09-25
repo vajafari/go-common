@@ -10,19 +10,19 @@ jobs:
     environment:
       TEST_RESULTS: /tmp/test-results
 
-  steps:
-    - checkout
-    - run: mkdir -p $TEST_RESULTS
-    - run: go get github.com/stretchr/testify
-    - run: go get gopkg.in/mgo.v2
-    - run: go get gopkg.in/mgo.v2/bson
-    - run: go get github.com/Gurpartap/logrus-stack
-    - run: go get github.com/lestrrat-go/file-rotatelogs
-    - run: go get github.com/rifflock/lfshook
-    - run: go get github.com/sirupsen/logrus
-    
-    - run:
-        command: |
-          make test | tee ${TEST_RESULTS}/go-test.out
-    
+    steps:
+      - checkout
+      - run: mkdir -p $TEST_RESULTS
+      - run: go get github.com/stretchr/testify
+      - run: go get gopkg.in/mgo.v2
+      - run: go get gopkg.in/mgo.v2/bson
+      - run: go get github.com/Gurpartap/logrus-stack
+      - run: go get github.com/lestrrat-go/file-rotatelogs
+      - run: go get github.com/rifflock/lfshook
+      - run: go get github.com/sirupsen/logrus
+      
+      - run:
+          command: |
+            make test | tee ${TEST_RESULTS}/go-test.out
+      
 

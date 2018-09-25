@@ -2,7 +2,14 @@ version: 2
 jobs:
   build:
     docker:
-      - image: golang:latest
+      - image: circleci/golang
+    working_directory: /go/src/github.com/vajafari/go-common
     steps:
       - checkout
-      - run: echo "My Test"
+      - run: go get github.com/stretchr/testify/assert
+      - run: go get gopkg.in/mgo.v2
+      - run: go get github.com/Gurpartap/logrus-stack
+      - run: go get github.com/lestrrat-go/file-rotatelogs
+      - run: go get github.com/rifflock/lfshook
+      - run: go get github.com/sirupsen/logrus
+      - run: go test 

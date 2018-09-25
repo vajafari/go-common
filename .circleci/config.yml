@@ -1,13 +1,14 @@
+
 version: 2
 jobs:
   build:
     docker:
       - image: circleci/golang
+      
     working_directory: /go/src/github.com/va_jafari/go-common
-
+    
     environment:
       TEST_RESULTS: /tmp/test-results
-
 
   steps:
     - checkout
@@ -24,3 +25,4 @@ jobs:
         command: |
           make test | tee ${TEST_RESULTS}/go-test.out
     
+

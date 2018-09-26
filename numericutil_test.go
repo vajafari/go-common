@@ -15,7 +15,7 @@ func TestLitToPInt64(t *testing.T) {
 // LitToPInt32 Convert litral to pointer
 func TestLitToPInt32(t *testing.T) {
 	pointerToNumber := LitToPInt32(45)
-	assert.Equal(t, int32(46), *pointerToNumber)
+	assert.Equal(t, int32(45), *pointerToNumber)
 }
 
 // LitToPInt16 Convert litral to pointer
